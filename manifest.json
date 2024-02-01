@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Rest In Peace",
+    "version": "1.0",
+    "description": "helping studying people to take breaks",
+    "action": {
+        "default_popup": "index.html"
+      },
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "content_scripts": [
+        {
+        "matches": ["<all_urls>"],
+        "js": ["main.js"]
+        }
+    ]
+  }

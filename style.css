@@ -1,0 +1,17 @@
+body {
+    height: 200px;
+    width: 300px;
+    background-color: black;
+    border: 2px gold;
+}
+
+h1 {
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: white;
+}
+
+h2 {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+    color: white;
+    font-size: 18px;
+}

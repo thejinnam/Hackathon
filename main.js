@@ -1,31 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
 const userTimeInput = document.getElementById('userInput');
 const userButton = document.getElementById('userButton');    
-const secDig = document.getElementById('secDig');    
-const textDig = secDig.appendChild('p');   
-console.log(textDig) 
+const Dig = document.getElementById('Dig');    
+//const textDig = secDig.innerText = '0';   
+//console.log(textDig) 
  
+fetch("https://type.fit/api/quotes")
+  .then(function(response) {
+    return response.json();
+  })
+  .then((data) => {
+    //creating a random number generator that chooses a random quote
+    let random = Math.floor(Math.random() * 16) + 1;
+    //const randomProp = obj => Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
+    //append a div with the inner text being the individual objects
+    //const receivedMessage = document.createElement('div');
+          //receivedMessage.setAttribute('class','messageBubble');
+          //console.log(data[1].text);
+
+          // const innerMessage = document.createElement('div');
+          // innerMessage.setAttribute('class','messageData');
+          //const author = document.createElement('p');
+          //console.log(randomProp(data))
+          //author.innerText = `${data[1].author} - ${data[1].text}`;
+
+          // const quote = document.createElement('p');
+          // quote.innerText = `${data[1].text}`;
+
+          //messageContainer.appendChild(receivedMessage);
+
+          //receivedMessage.appendChild(innerMessage);
+          // innerMessage.appendChild(author);
+          // innerMessage.appendChild(quote);
+
+    //when the input(seconds) is added and button is clicked, the timer starts decrementing from the time
+    userButton.addEventListener('click', ()=> {
+        let currTimeLeft = userTimeInput.value;
+       function decrement (timeLeft){
+         setTimeout(()=>{
+            if(timeLeft === 0){
+                confirm(`${data[random].author} - ${data[random].text}`);
+                console.log(`${data[random].author} - ${data[random].text}`)
+            } else {
+                Dig.innerText = `${timeLeft-1}`;
+                return decrement(timeLeft-1);
+            }
+        },1000)
+        
+    }
+    decrement(currTimeLeft);
+
+    userTimeInput.value = '';
+    });
+  });
+})
 
 
-//userButton.addEventListener('click', ()=> alert(userTimeInput.value))
-//set interval, until it gets to 0
 
-//when the input(seconds) is added and button is clicked, the timer starts decrementing from the time
-userButton.addEventListener('click', ()=> 
 
-{
-    //setTimeout(()=>alert('relax!'), userTimeInput.value*1000)
-   function decrement (timeLeft = userTimeInput.value){
-     setTimeout(()=>{
-        if(timeLeft === 0){
-            alert('relax');
-        } else {
-            textDig.innerText= timeLeft-1
-            return decrement(timeLeft);
-        }
-    },1000)
-}
-});
 
 
 // let dogurl = "https://dog.ceo/api/breeds/list/all"
@@ -56,6 +88,3 @@ userButton.addEventListener('click', ()=>
 //       console.log("HTTP-Error: " + response.status)
 //   }
 // }
-
-
-})
